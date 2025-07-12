@@ -1,0 +1,12 @@
+<!doctype html>
+<title>Weld X-Ray AI</title>
+<h1>Загрузка снимка сварного шва</h1>
+<form method=post enctype=multipart/form-data>
+  <input type=file name=file>
+  <input type=submit value=Загрузить>
+</form>
+{% if filename %}
+    <h2>Загруженный снимок:</h2>
+    <img src="{{ url_for('static', filename='uploads/' + filename) }}" width="300">
+    <h3>Результат анализа: {{ prediction }}</h3>
+{% endif %}
