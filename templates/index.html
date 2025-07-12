@@ -10,6 +10,11 @@
       text-align: center;
       padding: 40px;
     }
+    .logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 20px;
+    }
     h1 {
       color: #222;
     }
@@ -27,7 +32,7 @@
       border-radius: 4px;
       cursor: pointer;
     }
-    img {
+    img.preview {
       max-width: 80%;
       height: auto;
       margin-top: 20px;
@@ -41,6 +46,9 @@
 </head>
 <body>
 
+  <!-- 👇 Логотип -->
+  <img src="{{ url_for('static', filename='logo.png') }}" alt="Логотип" class="logo">
+
   <h1>Загрузка снимка сварного шва</h1>
   <form method="post" enctype="multipart/form-data">
     <input type="file" name="file">
@@ -49,7 +57,7 @@
 
   {% if filename %}
     <h2>Загруженный снимок:</h2>
-    <img src="{{ url_for('static', filename='uploads/' + filename) }}">
+    <img src="{{ url_for('static', filename='uploads/' + filename) }}" class="preview">
     <h3>Результат анализа: {{ prediction }}</h3>
   {% endif %}
 
