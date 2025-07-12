@@ -1,68 +1,35 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Weld X-Ray AI</title>
-  <style>
-    body {
-      <div style="text-align: center; margin-top: 20px;">
-    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Логотип" style="width: 120px; height: auto;">
-</div>
-      font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
-      text-align: center;
-      padding: 40px;
-    }
-    .logo {
-      width: 120px;
-      height: auto;
-      margin-bottom: 20px;
-    }
-    h1 {
-      color: #222;
-    }
-    form {
-      margin: 20px auto;
-    }
-    input[type="file"] {
-      padding: 10px;
-    }
-    input[type="submit"] {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    img.preview {
-      max-width: 80%;
-      height: auto;
-      margin-top: 20px;
-      border: 2px solid #ccc;
-    }
-    h3 {
-      color: #333;
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Weld X-Ray AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            text-align: center;
+            padding: 40px;
+        }
+        img.logo {
+            width: 200px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- 👇 Логотип -->
-  <img src="{{ url_for('static', filename='logo.png') }}" alt="Логотип" class="logo">
+    <!-- Логотип -->
+    <img class="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Логотип">
 
-  <h1>Загрузка снимка сварного шва</h1>
-  <form method="post" enctype="multipart/form-data">
-    <input type="file" name="file">
-    <input type="submit" value="Загрузить">
-  </form>
+    <!-- Основной контент -->
+    <h1>Добро пожаловать в Weld X-Ray AI</h1>
+    <p>Загрузите рентгеновский снимок сварного шва для анализа</p>
 
-  {% if filename %}
-    <h2>Загруженный снимок:</h2>
-    <img src="{{ url_for('static', filename='uploads/' + filename) }}" class="preview">
-    <h3>Результат анализа: {{ prediction }}</h3>
-  {% endif %}
+    <!-- Форма загрузки -->
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">Загрузить</button>
+    </form>
 
 </body>
 </html>
