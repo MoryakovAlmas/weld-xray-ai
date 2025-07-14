@@ -10,56 +10,87 @@
             background-image: url("/static/images/background.png");
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
             font-family: Arial, sans-serif;
             color: white;
         }
 
         .container {
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 600px;
+            max-width: 500px;
             margin: 100px auto;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 12px;
             text-align: center;
         }
 
-        img.logo {
-            width: 150px;
+        img {
+            max-width: 150px;
             margin-bottom: 20px;
         }
 
-        input[type="file"],
-        input[type="submit"] {
-            margin: 10px;
-            padding: 12px;
-            font-size: 16px;
-            border-radius: 6px;
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
         }
 
-        input[type="submit"] {
+        p {
+            margin-bottom: 20px;
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+
+        .upload-btn {
             background-color: #ff7f00;
-            color: white;
             border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
         }
 
-        input[type="submit"]:hover {
-            background-color: #e86f00;
+        .upload-btn:hover {
+            background-color: #e86e00;
+        }
+
+        .about-link {
+            margin-top: 25px;
+            display: block;
+            color: #ff7f00;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .about-link:hover {
+            text-decoration: underline;
+        }
+
+        .prediction {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #00ffcc;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="/static/images/logo.png" alt="Логотип" class="logo">
-        <h2>Добро пожаловать в Weld X-Ray AI</h2>
+        <img src="/static/images/logo.png" alt="Логотип">
+        <h1>Добро пожаловать в Weld X-Ray AI</h1>
         <p>Загрузите рентгеновский снимок сварного шва для анализа</p>
-        <form action="/analyze" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" required>
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file">
             <br>
-            <input type="submit" value="Загрузить">
+            <button class="upload-btn" type="submit">Загрузить</button>
         </form>
+
+        {% if prediction %}
+            <p class="prediction">{{ prediction }}</p>
+        {% endif %}
+
+        <a class="about-link" href="/about">О проекте</a>
     </div>
 </body>
 </html>
