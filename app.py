@@ -21,6 +21,15 @@ def index():
         file.save(filepath)
 
         prediction = "Возможен дефект — требуется проверка"
-        return render_template("index.html", filename=file.filename, prediction=prediction)
+        return render_template("index.html", prediction=prediction)
 
     return render_template("index.html")
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
