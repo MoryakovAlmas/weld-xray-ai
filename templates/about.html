@@ -2,62 +2,84 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>О проекте</title>
+    <title>О проекте Weld X-Ray AI</title>
     <style>
         body {
-            background-image: url("/static/images/background.png");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
+            margin: 0;
+            padding: 0;
+            background-color: #0a1a2f;
             color: white;
             font-family: Arial, sans-serif;
         }
-        .container {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 30px;
-            margin: 100px auto;
-            width: 90%;
-            max-width: 700px;
-            border-radius: 10px;
-        }
-        h1 {
-            color: orange;
+        nav {
+            background-color: #0a1a2f;
+            padding: 20px;
             text-align: center;
         }
-        h2 {
-            color: orange;
+        nav a {
+            color: #ffa500;
+            text-decoration: none;
+            font-size: 18px;
         }
-        a {
-            color: orange;
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #111;
+            border-radius: 12px;
+        }
+        h1 {
+            color: #ffa500;
+        }
+        h2 {
+            color: #ff6600;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .back-link {
+            display: block;
+            margin-top: 30px;
+            color: #ffa500;
             text-decoration: none;
         }
-        a:hover {
+        .back-link:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>О проекте Weld X-Ray AI</h1>
-    <p><strong>Weld X-Ray AI</strong> — это веб-приложение, созданное для автоматического анализа рентгеновских снимков сварных швов с использованием искусственного интеллекта.</p>
 
-    <h2>Кто мы?</h2>
-    <p><strong>Автор и разработчик:</strong> Алмас — специалист по контролю качества, инспектор с практическим опытом, который мечтает сделать сложные процессы проще с помощью ИИ.</p>
+    <nav>
+        <a href="/">← Назад на главную</a>
+    </nav>
 
-    <h2>Что делает наш ИИ?</h2>
-    <ul>
-        <li>Принимает рентгеновский снимок сварного шва</li>
-        <li>Проводит первичный анализ наличия дефектов</li>
-        <li>Выдаёт предварительное заключение в считанные секунды</li>
-    </ul>
+    <div class="container">
+        <h1>О проекте Weld X-Ray AI</h1>
+        <p><strong>Weld X-Ray AI</strong> — это веб-приложение, созданное для автоматического анализа рентгеновских снимков сварных швов с использованием искусственного интеллекта.</p>
 
-    <h2>Наша цель</h2>
-    <p>Сделать контроль качества сварки доступным, быстрым и надёжным — в любом уголке мира. Упростить работу инспекторов и инженеров, повысить точность и сократить ошибки.</p>
+        <h2>Кто мы?</h2>
+        <p><strong>Автор и разработчик:</strong> Алмас — специалист по контролю качества, инспектор с практическим опытом, который мечтает сделать сложные процессы проще с помощью ИИ.</p>
 
-    <h2>Контакты</h2>
-    <p>По всем вопросам, предложениям или сотрудничеству: <a href="mailto:doomoryakov@mail.ru">doomoryakov@mail.ru</a></p>
+        <h2>Что делает наш ИИ?</h2>
+        <ul>
+            <li>Принимает рентгеновский снимок сварного шва</li>
+            <li>Проводит первичный анализ наличия дефектов</li>
+            <li>Выдаёт предварительное заключение в считанные секунды</li>
+        </ul>
 
-    <p><a href="/">← Вернуться на главную</a></p>
-</div>
+        <h2>Наша цель</h2>
+        <p>Сделать контроль качества сварки доступным, быстрым и надёжным — в любом уголке мира. Упростить работу инспекторов и инженеров, повысить точность и сократить ошибки.</p>
+
+        <h2>Контакты</h2>
+        <p>По всем вопросам, предложениям или сотрудничеству:  
+        <a href="mailto:doomoryakov@mail.ru" style="color: #00ffcc;">doomoryakov@mail.ru</a></p>
+
+        <a class="back-link" href="/">← Вернуться на главную</a>
+    </div>
+
 </body>
 </html>
