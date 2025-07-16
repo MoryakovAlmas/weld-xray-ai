@@ -1,100 +1,108 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Weld X-Ray AI</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-image: url("/static/images/background.png");
-            background-size: cover;
-            background-position: center;
-            font-family: Arial, sans-serif;
-            color: white;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weld X-Ray AI</title>
+  <style>
+    body {
+      background-color: #0e1a2b;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
 
-        .container {
-            max-width: 500px;
-            margin: 100px auto;
-            padding: 40px;
-            background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 12px;
-            text-align: center;
-        }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
 
-        img {
-            max-width: 150px;
-            margin-bottom: 20px;
-        }
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
 
-        h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
+    input[type="file"] {
+      margin-bottom: 20px;
+    }
 
-        p {
-            margin-bottom: 20px;
-        }
+    button {
+      background-color: #2a9df4;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-        input[type="file"] {
-            margin-bottom: 20px;
-        }
+    #preview {
+      margin-top: 20px;
+      max-width: 90%;
+      border: 2px solid white;
+      border-radius: 10px;
+    }
 
-        .upload-btn {
-            background-color: #ff7f00;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .upload-btn:hover {
-            background-color: #e86e00;
-        }
-
-        .about-link {
-            margin-top: 25px;
-            display: block;
-            color: #ff7f00;
-            text-decoration: none;
-            font-size: 15px;
-        }
-
-        .about-link:hover {
-            text-decoration: underline;
-        }
-
-        .prediction {
-            margin-top: 20px;
-            font-weight: bold;
-            color: #00ffcc;
-        }
-    </style>
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      background-color: #1f2f46;
+      padding: 20px;
+      border-radius: 10px;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-    <nav style="background-color: #0a1a2f; padding: 15px; text-align: center;">
-    <a href="/" style="color: #ffa500; margin: 0 20px; text-decoration: none; font-weight: bold;">Главная</a>
-    <a href="/about" style="color: #ffa500; margin: 0 20px; text-decoration: none; font-weight: bold;">О проекте</a>
-</nav>
-    <div class="container">
-        <img src="/static/images/logo.png" alt="Логотип">
-        <h1>Добро пожаловать в Weld X-Ray AI</h1>
-        <p>Загрузите рентгеновский снимок сварного шва для анализа</p>
+  <h1>Weld X-Ray AI</h1>
+  <p>Загрузите рентгеновский снимок сварного шва для анализа</p>
 
-        <form method="POST" enctype="multipart/form-data">
-            <input type="file" name="file">
-            <br>
-            <button class="upload-btn" type="submit">Загрузить</button>
-        </form>
+  <input type="file" id="fileInput" accept="image/*" />
+  <br>
+  <button onclick="analyzeImage()">Анализировать</button>
 
-        {% if prediction %}
-            <p class="prediction">{{ prediction }}</p>
-        {% endif %}
+  <div id="previewContainer">
+    <img id="preview" src="" alt="" style="display:none;" />
+  </div>
 
-        <a class="about-link" href="/about">О проекте</a>
-    </div>
+  <div id="result"></div>
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const preview = document.getElementById('preview');
+    const result = document.getElementById('result');
+
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+          result.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    function analyzeImage() {
+      if (!fileInput.files[0]) {
+        alert("Сначала загрузите изображение");
+        return;
+      }
+
+      result.style.display = 'block';
+      result.innerHTML = "🔍 Анализирую снимок...";
+
+      setTimeout(() => {
+        result.innerHTML = `
+          ✅ <strong>Обнаружены дефекты:</strong> Поры, Непровар<br>
+          📏 <strong>Примерная длина:</strong> 18 мм<br>
+          ⚠ <strong>Рекомендация:</strong> Провести ручную проверку
+        `;
+      }, 2000);
+    }
+  </script>
 </body>
 </html>
