@@ -2,66 +2,100 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weld X-Ray AI</title>
   <style>
     body {
-      background-color: #0e1a2b;
+      margin: 0;
       font-family: Arial, sans-serif;
+      background-color: #0a1424;
       color: white;
+    }
+
+    header {
+      background-color: #081020;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: orange;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 16px;
+    }
+
+    main {
       text-align: center;
-      padding: 30px;
+      padding: 60px 20px;
+    }
+
+    .logo {
+      width: 100px;
+      margin-bottom: 20px;
+    }
+
+    .upload-box {
+      background-color: #111c33;
+      border-radius: 10px;
+      padding: 40px;
+      display: inline-block;
     }
 
     h1 {
-      font-size: 36px;
+      font-size: 24px;
       margin-bottom: 10px;
     }
 
     p {
-      font-size: 18px;
+      font-size: 16px;
       margin-bottom: 30px;
     }
 
-    .button {
-      background-color: #2a9df4;
-      color: white;
-      padding: 12px 24px;
+    input[type="file"] {
+      margin-bottom: 20px;
+    }
+
+    .upload-button {
+      background-color: orange;
+      color: black;
+      padding: 10px 20px;
       border: none;
       border-radius: 5px;
       font-size: 16px;
       cursor: pointer;
-      text-decoration: none;
     }
 
     .footer {
-      margin-top: 40px;
+      margin-top: 30px;
       font-size: 14px;
-    }
-
-    .logo {
-      font-size: 28px;
-      font-weight: bold;
-      color: #2a9df4;
-      margin-bottom: 20px;
-    }
-
-    a {
-      color: #2a9df4;
-      text-decoration: none;
+      color: orange;
     }
   </style>
 </head>
 <body>
-  <div class="logo">Weld X-Ray AI</div>
 
-  <h1>Weld X-Ray AI</h1>
-  <p>Загрузите рентгеновский снимок сварного шва для анализа</p>
+  <header>
+    <div style="font-weight: bold; color: orange;">Weld X-Ray AI</div>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="about.html">О проекте</a>
+    </nav>
+  </header>
 
-  <a href="#" class="button">Загрузить снимок</a>
+  <main>
+    <div class="upload-box">
+      <img src="logo.png" alt="Логотип" class="logo" />
+      <h1>Добро пожаловать в Weld X-Ray AI</h1>
+      <p>Загрузите рентгеновский снимок сварного шва для анализа</p>
+      <input type="file" />
+      <br />
+      <button class="upload-button">Загрузить</button>
+      <div class="footer">О проекте</div>
+    </div>
+  </main>
 
-  <div class="footer">
-    <p><a href="about.html">О проекте</a> | © 2025</p>
-  </div>
 </body>
 </html>
