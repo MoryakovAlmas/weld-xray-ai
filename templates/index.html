@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Weld X-Ray AI</title>
   <style>
     body {
@@ -80,20 +80,20 @@
   <header>
     <div style="font-weight: bold; color: orange;">Weld X-Ray AI</div>
     <nav>
-      <a href="index.html">Главная</a>
-      <a href="about.html">О проекте</a>
+      <a href="/">Главная</a>
+      <a href="/about">О проекте</a>
     </nav>
   </header>
 
   <main>
     <div class="upload-box">
-      <img src="logo.png" alt="Логотип" class="logo" />
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Логотип" class="logo" />
       <h1>Добро пожаловать в Weld X-Ray AI</h1>
       <p>Загрузите рентгеновский снимок сварного шва для анализа</p>
       <input type="file" />
       <br />
       <button class="upload-button">Загрузить</button>
-      <div class="footer">О проекте</div>
+      <div class="footer"><a href="/about" style="color: orange;">О проекте</a></div>
     </div>
   </main>
 
