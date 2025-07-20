@@ -3,120 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Weld X-Ray AI</title>
+  <title>Искра — Анализ рентгеновских снимков</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #0a1424;
+      background-color: #0f1a2b;
       color: white;
+      margin: 0;
+      padding: 0;
     }
-
     header {
-      background-color: #081020;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background-color: #15263f;
+      padding: 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-
-    nav a {
-      color: orange;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 16px;
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #ffcc00;
     }
-
     main {
+      max-width: 600px;
+      margin: 3rem auto;
+      background-color: #1c2e48;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
       text-align: center;
-      padding: 60px 20px;
     }
-
-    .logo {
-      width: 100px;
-      margin-bottom: 20px;
-    }
-
-    .upload-box {
-      background-color: #111c33;
-      border-radius: 10px;
-      padding: 40px;
-      display: inline-block;
-    }
-
-    h1 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 16px;
-      margin-bottom: 30px;
-    }
-
     input[type="file"] {
-      margin-bottom: 20px;
+      margin: 1rem 0;
     }
-
-    .upload-button {
-      background-color: orange;
-      color: black;
-      padding: 10px 20px;
+    button {
+      padding: 0.7rem 1.5rem;
+      background-color: #ffcc00;
       border: none;
-      border-radius: 5px;
-      font-size: 16px;
+      border-radius: 8px;
+      font-weight: bold;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
-
-    .footer {
-      margin-top: 30px;
-      font-size: 14px;
-      color: orange;
+    button:hover {
+      background-color: #e6b800;
     }
-
-    footer#contacts {
-      background-color: #081020;
-      padding: 40px 20px;
+    #uploadResult {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    footer {
       text-align: center;
-      color: orange;
-    }
-
-    footer#contacts a {
-      color: orange;
-      text-decoration: none;
+      padding: 1rem;
+      background-color: #15263f;
+      color: #aaa;
+      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div style="font-weight: bold; color: orange;">Weld X-Ray AI</div>
-    <nav>
-      <a href="/">Главная</a>
-      <a href="/about">О проекте</a>
-      <a href="#contacts">Контакты</a>
-    </nav>
-  </header>
+<header>
+  <h1>Искра — Weld X-Ray AI</h1>
+</header>
 
-  <main>
-    <div class="upload-box">
-      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Логотип" class="logo" />
-      <h1>Добро пожаловать в Weld X-Ray AI</h1>
-      <p>Загрузите рентгеновский снимок сварного шва для анализа</p>
-      <input type="file" />
-      <br />
-      <button class="upload-button">Загрузить</button>
-      <div class="footer"><a href="/about" style="color: orange;">О проекте</a></div>
-    </div>
-  </main>
+<main>
+  <h2>Загрузите рентгеновский снимок</h2>
+  <input type="file" id="fileInput" accept="image/*" />
+  <br />
+  <button id="uploadButton">Загрузить</button>
+  <div id="uploadResult"></div>
+</main>
 
-  <footer id="contacts">
-    <h2>Контакты</h2>
-    <p>📱 WhatsApp: <a href="https://wa.me/79234124245" target="_blank">+7 923 412 4245</a></p>
-    <p>📞 Телефон (Казахстан): +7 708 639 1267</p>
-    <p>📧 Почта: <a href="mailto:doomoryakov@mail.ru">doomoryakov@mail.ru</a></p>
-    <p>📍 Казахстан, г. Семей</p>
-  </footer>
+<footer>
+  © Искра, 2025 • г. Семей • doomoryakov@mail.ru
+</footer>
+
+<script>
+  document.getElementById('uploadButton').addEventListener('click', async () => {
+    const fileInput = document.getElementById('fileInput');
+    const resultDiv = document.getElementById('uploadResult');
+    const file = fileInput.files[0];
+
+    if (!file) {
+      resultDiv.innerText = 'Пожалуйста, выберите файл.';
+      resultDiv.style.color = 'red';
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch('/upload', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (response.ok) {
+        resultDiv.innerText = 'Файл успешно загружен!';
+        resultDiv.style.color = '#00cc66';
+      } else {
+        resultDiv.innerText = 'Ошибка загрузки файла.';
+        resultDiv.style.color = 'red';
+      }
+    } catch (error) {
+      resultDiv.innerText = 'Сервер недоступен или произошла ошибка.';
+      resultDiv.style.color = 'red';
+    }
+  });
+</script>
 
 </body>
 </html>
